@@ -1,0 +1,12 @@
+{
+  "createTask": {
+    "text": "Prepare Playwright API regression"
+  },
+  "updateTask": {
+    "text": "Prepare Playwright API regression - updated"
+  },
+  "invalidTask": {
+    "text": ""
+  },
+  "notFoundTaskId": "not-existing-task-id"
+}

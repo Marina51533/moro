@@ -1,0 +1,10 @@
+{
+  "careerPagePath": "/kariera/",
+  "cityFilterVariants": [
+    { "city": "Brno", "hasPositions": true },
+    { "city": "Praha", "hasPositions": true },
+    { "city": "Hradec Králové", "hasPositions": true },
+    { "city": "home office", "hasPositions": true },
+    { "city": "Bratislava", "hasPositions": false }
+  ]
+}

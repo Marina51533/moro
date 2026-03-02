@@ -1,0 +1,31 @@
+{
+  "name": "moro-playwright-framework",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Playwright + TypeScript framework for UI and API automation",
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test tests/ui",
+    "test:api": "playwright test tests/api",
+    "api:codegen": "openapi --input http://localhost:8080/v3/api-docs --output src/api/generated/todo --client fetch --useOptions --useUnionTypes",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "report": "playwright show-report",
+    "allure:generate": "allure generate allure-results --clean -o allure-report",
+    "allure:open": "allure open allure-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.53.0",
+    "@typescript-eslint/eslint-plugin": "^8.24.0",
+    "@typescript-eslint/parser": "^8.24.0",
+    "@types/node": "^22.15.28",
+    "allure-commandline": "^2.30.0",
+    "allure-playwright": "^2.14.0",
+    "dotenv": "^16.5.0",
+    "eslint": "^8.57.1",
+    "openapi-typescript-codegen": "^0.29.0",
+    "typescript": "^5.8.3"
+  }
+}
