@@ -138,7 +138,7 @@ npm run lint:fix
 - CI workflow with GitHub Actions
 
 ## Reporting
-
+<img width="1425" height="660" alt="Screenshot 2026-03-02 at 19 51 13" src="https://github.com/user-attachments/assets/71986403-3eaf-4079-a31c-262dd9ad793b" />
 Open HTML report:
 ```bash
 npm run report
@@ -175,3 +175,6 @@ Troubleshooting Allure:
 ## Notes
 - API tests expect `/tasks` endpoints from the MoroSystems Todo backend.
 - OpenAPI client code is generated to `src/api/generated/todo/` from `http://localhost:8080/v3/api-docs`.
+
+
+  
