@@ -172,6 +172,13 @@ Troubleshooting Allure:
 - If generation fails, regenerate from scratch: `npm run allure:generate`.
 - If report looks outdated, rerun tests and then regenerate report.
 
+## CI/CD pipeline and GitHub actions
+- Run on each pr
+- Run API and e2e tests
+  
+<img width="1440" height="531" alt="Screenshot 2026-03-02 at 22 19 10" src="https://github.com/user-attachments/assets/edaaf9f1-f410-403a-b576-d70386f8079f" />
+
+
 ## Notes
 - API tests expect `/tasks` endpoints from the MoroSystems Todo backend.
 - OpenAPI client code is generated to `src/api/generated/todo/` from `http://localhost:8080/v3/api-docs`.
