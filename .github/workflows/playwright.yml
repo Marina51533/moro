@@ -11,23 +11,46 @@ jobs:
     runs-on: ubuntu-latest
     env:
       API_PORT: 8080
-      API_BASE_URL: ${{ secrets.API_BASE_URL }}
+      API_BASE_URL: http://localhost:8080
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Resolve API base URL
-        run: |
-          if [ -z "${API_BASE_URL}" ]; then
-            echo "API_BASE_URL=http://localhost:${API_PORT}" >> "$GITHUB_ENV"
-          fi
       - run: npm ci
       - run: npx playwright install --with-deps
+      - name: Checkout todo-be backend
+        uses: actions/checkout@v4
+        with:
+          repository: morosystems/todo-be
+          path: todo-be
+      - name: Start todo-be backend
+        run: |
+          cd todo-be
+          npm ci
+          PORT=${API_PORT} npm start > ../todo-be.log 2>&1 &
+      - name: Wait for API readiness
+        run: |
+          for i in {1..60}; do
+            if curl -fsS "${API_BASE_URL}/v3/api-docs" >/dev/null; then
+              echo "API is ready at ${API_BASE_URL}"
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "API is not reachable at ${API_BASE_URL}" >&2
+          exit 1
       - name: Run API tests
         run: npm run test:api
       - name: Run UI tests
         run: npm run test:ui
+      - name: Upload backend log
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: todo-be-log
+          path: todo-be.log
+          retention-days: 14
       - name: Upload Playwright Report
         if: always()
         uses: actions/upload-artifact@v4
